@@ -19,12 +19,12 @@ public abstract class AbstractDao<T> {
 	}
 
 	/**
-	 * Método genérico responsavel por salvar objetos
+	 * Mï¿½todo genï¿½rico responsavel por salvar objetos
 	 * 
 	 * @param Object Objeto a ser salvo
 	 * @return Objeto salvo
 	 */
-	public T save(T object) {
+	public T save(T object){
 		EntityTransaction transaction = manager.getTransaction();
 		try {
 			transaction.begin();
@@ -33,13 +33,13 @@ public abstract class AbstractDao<T> {
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
-			throw e;
+			System.err.println(e);
 		}
 		return object;
 	}
 
 	/**
-	 * Método genérico responsavel por atualizar objetos
+	 * Mï¿½todo genï¿½rico responsavel por atualizar objetos
 	 * 
 	 * @param Object Objeto a ser atualizado
 	 * @return Objeto atualizado
@@ -53,13 +53,13 @@ public abstract class AbstractDao<T> {
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
-			throw e;
+			System.err.println(e);
 		}
 		return object;
 	}
 
 	/**
-	 * Método genérico responsavel deletar objetos por id
+	 * Mï¿½todo genï¿½rico responsavel deletar objetos por id
 	 * 
 	 * @param id Id do objeto a ser deletado
 	 */
@@ -74,13 +74,13 @@ public abstract class AbstractDao<T> {
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
-			throw e;
+			System.err.println(e);
 		}
 
 	}
 
 	/**
-	 * Método genérico responsavel deletar objetos
+	 * Mï¿½todo genï¿½rico responsavel deletar objetos
 	 * 
 	 * @param object Objeto a ser deletado
 	 */
@@ -94,12 +94,12 @@ public abstract class AbstractDao<T> {
 			transaction.commit();
 		} catch (Exception e) {
 			transaction.rollback();
-			throw e;
+			System.err.println(e);
 		}
 	}
 
 	/**
-	 * Método responsavel por buscar objetos por id
+	 * Mï¿½todo responsavel por buscar objetos por id
 	 * 
 	 * @param id Id do objeto
 	 * @return Objeto encontrado
@@ -109,7 +109,7 @@ public abstract class AbstractDao<T> {
 	}
 
 	/**
-	 * Método responsavel por listar todos objetos
+	 * Mï¿½todo responsavel por listar todos objetos
 	 * 
 	 * @return Lista de objeto encontrado
 	 */
@@ -118,7 +118,7 @@ public abstract class AbstractDao<T> {
 	}
 
 	/**
-	 * Método responsavel por criar uma Query
+	 * Mï¿½todo responsavel por criar uma Query
 	 * 
 	 * @return Query criada
 	 */
@@ -127,7 +127,7 @@ public abstract class AbstractDao<T> {
 	}
 
 	/**
-	 * Método responsavel por criar uma NamedQuery
+	 * Mï¿½todo responsavel por criar uma NamedQuery
 	 * 
 	 * @return Query criada
 	 */

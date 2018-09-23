@@ -33,9 +33,6 @@ public class Funcionario implements Serializable {
 	@ManyToMany
 	private List<HorarioAtendimento> horariosAtendimento;
 
-	@Enumerated(EnumType.STRING)
-	private Permissao permissao;
-
 	public Long getId() {
 		return id;
 	}
@@ -74,14 +71,6 @@ public class Funcionario implements Serializable {
 
 	public void setHorariosAtendimento(List<HorarioAtendimento> horariosAtendimento) {
 		this.horariosAtendimento = horariosAtendimento;
-	}
-
-	public Permissao getPermissao() {
-		return permissao;
-	}
-
-	public void setPermissao(Permissao permissao) {
-		this.permissao = permissao;
 	}
 
 }

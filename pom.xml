@@ -56,6 +56,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.29</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Primefaces -->
@@ -70,6 +71,31 @@
 			<groupId>org.primefaces.themes</groupId>
 			<artifactId>all-themes</artifactId>
 			<version>1.0.10</version>
+		</dependency>
+		
+		<!-- Spring security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>3.2.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 	</dependencies>

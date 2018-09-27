@@ -17,6 +17,8 @@ public class Agendamento implements Serializable {
 	private Long id;
 
 	private LocalTime horario;
+	
+	private LocalTime horarioFim;
 
 	private LocalDate data;
 
@@ -85,6 +87,14 @@ public class Agendamento implements Serializable {
 
 	public void setServico(Servico servico) {
 		this.servico = servico;
+	}
+	
+	public LocalTime getHorarioFim() {
+		return horarioFim;
+	}
+	
+	public void setHorarioFim(LocalTime horarioFim) {
+		this.horarioFim = horarioFim;
 	}
 
 }

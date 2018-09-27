@@ -13,7 +13,7 @@ public final class JpaUtil {
 	}
 
 	/**
-	 * Método de criação do factory de EntityManager
+	 * Mï¿½todo de criaï¿½ï¿½o do factory de EntityManager
 	 * 
 	 * @return EntityManagerFactory
 	 * @author Felipe Funck
@@ -30,7 +30,7 @@ public final class JpaUtil {
 	}
 	
 	/**
-	 * Método de criação de uma unidade de EntityManager
+	 * Mï¿½todo de criaï¿½ï¿½o de uma unidade de EntityManager
 	 * 
 	 * @return EntityManagerFactory
 	 * @author Felipe Funck

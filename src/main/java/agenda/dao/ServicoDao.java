@@ -8,4 +8,10 @@ public class ServicoDao extends AbstractDao<Servico>{
 		super(Servico.class);
 	}
 
+	public Servico findByDescricao(String descricao) {
+		return (Servico) createNamedQuery("servico.findByDescricao")
+				.setParameter("descricao", descricao)
+				.getSingleResult();
+	}
+
 }

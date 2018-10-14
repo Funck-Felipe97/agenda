@@ -1,0 +1,49 @@
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Cadastro de Clientes</h1>
+		<h:form id="formMessageId">
+		    <p:messages showDetail="true" closable="true">
+		    </p:messages>
+		    
+		</h:form>
+		<h:form id="frm">
+			<p:panelGrid columns="2" columnClasses="label,campo"
+				styleClass="panel" id="panelCadastroId">
+				
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{cadastroClienteBean.cliente.nome}" />
+				
+				<p:outputLabel value="Email" />
+				<p:inputText value="#{cadastroClienteBean.cliente.email}" />
+				
+				<p:outputLabel value="Cidade" />
+				<p:inputText value="#{cadastroClienteBean.cliente.cidade}" />
+				
+				<p:outputLabel value="Telefone" />
+				<p:inputText value="#{cadastroClienteBean.cliente.telefone}" />				
+				
+				<p:outputLabel value="Usuário" />
+				<p:inputText value="#{cadastroClienteBean.cliente.usuario.login}" />
+				
+				<p:outputLabel value="Senha" />
+				<p:password value="#{cadastroClienteBean.cliente.usuario.senha}" />				
+				
+				
+				
+				<h:panelGroup>
+					<p:commandButton value="Salvar" action="#{cadastroClienteBean.save}"
+					update=":formMessageId , panelCadastroId" />
+				</h:panelGroup>
+			
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

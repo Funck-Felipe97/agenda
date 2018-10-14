@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import agenda.model.enuns.Permissao;
+
 @Entity
 public class Cliente implements Serializable{
 
@@ -20,6 +22,11 @@ public class Cliente implements Serializable{
 	private String telefone;
 	private String cidade;
 	
+	
+	public Cliente() {
+		getUsuario().setPermissao(Permissao.ROLE_CLIENTE);
+	}
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
@@ -64,6 +71,9 @@ public class Cliente implements Serializable{
 	}
 
 	public Usuario getUsuario() {
+		if (usuario == null) {
+			usuario = new Usuario();
+		}
 		return usuario;
 	}
 

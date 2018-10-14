@@ -5,12 +5,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import agenda.exceptions.ObjetoJaCadastradoException;
 import agenda.model.Servico;
 import agenda.service.ServicoService;
 
 @ManagedBean
 @SessionScoped
-public class ServicoBean {
+public class ServicoBean extends AbstractBean{
 
 	private Servico servico;
 	private ServicoService servicoService;
@@ -20,8 +21,15 @@ public class ServicoBean {
 	}
 	
 	public void save() {
-		this.servicoService.save(servico);
-		this.servico = new Servico();
+		try {
+			this.servicoService.save(servico);
+			this.servico = new Servico();
+			super.info("Serviço cadastrado com sucesso");
+		} catch (ObjetoJaCadastradoException e) {
+			super.warn("Este produto já foi cadastrado.");
+			e.printStackTrace();
+		}
+		
 	}
 
 	public Servico getServico() {

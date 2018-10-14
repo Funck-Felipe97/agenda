@@ -11,7 +11,10 @@
 
 	<ui:define name="content">
 		<h1 class="aw-page-title">Serviços</h1>
-
+		<h:form id="formMessageId">
+			<p:messages showDetail="true" closable="true">
+			</p:messages>
+		</h:form>
 		<h:form id="frm">
 			<p:panelGrid columns="2" columnClasses="label,campo"
 				styleClass="panel" id="panelServicoId">
@@ -20,17 +23,17 @@
 
 				<p:outputLabel value="Preço" />
 				<p:inputText value="#{servicoBean.servico.preco}" />
-				
+
 				<p:outputLabel value="Disponivel" />
 				<p:selectOneMenu value="#{servicoBean.servico.disponivel}">
-					<f:selectItem itemLabel="Sim" itemValue="#{true}"/>
-					<f:selectItem itemLabel="Não" itemValue="#{false}"/>
+					<f:selectItem itemLabel="Sim" itemValue="#{true}" />
+					<f:selectItem itemLabel="Não" itemValue="#{false}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="" />
 				<h:panelGroup>
 					<p:commandButton value="Salvar" action="#{servicoBean.save}"
-						update=":formTabela , panelServicoId" />
+						update="@all" />
 					<p:commandButton value="Novo" />
 				</h:panelGroup>
 			</p:panelGrid>
@@ -49,14 +52,16 @@
 				<p:column headerText="Preço" style="width: 30%;">
 					<h:outputText value="#{servico.preco}" />
 				</p:column>
-				
-				<p:column headerText="Disponivel" style="width: 20%; text-align:center;">
+
+				<p:column headerText="Disponivel"
+					style="width: 20%; text-align:center;">
 					<h:outputText value="#{servico.disponivel ? 'Sim' : 'Não'}" />
 				</p:column>
-				
+
 				<p:column headerText="Opções" style="width: 10%; text-align:center;">
 					<p:commandButton value="Editar" update="@all">
-						<f:setPropertyActionListener target="#{servicoBean.servico}" value="#{servico}"/>
+						<f:setPropertyActionListener target="#{servicoBean.servico}"
+							value="#{servico}" />
 					</p:commandButton>
 				</p:column>
 

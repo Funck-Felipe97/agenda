@@ -8,7 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@NamedQueries({
+	@NamedQuery(name = "servico.findByDescricao", query = "SELECT s FROM Servico s WHERE s.descricao LIKE :descricao")
+})
 @Entity
 public class Servico implements Serializable {
 

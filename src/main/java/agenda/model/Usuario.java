@@ -15,7 +15,7 @@ import agenda.model.enuns.Permissao;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="usuario.findByLogin", query="SELECT u FROM Usuario u WHERE u.login = :login")
+	@NamedQuery(name="usuario.findByLogin", query="SELECT u FROM Usuario u WHERE u.login LIKE :login")
 })
 public class Usuario implements Serializable {
 	

@@ -2,12 +2,15 @@ package agenda.model;
 
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import agenda.model.enuns.Dia;
 
@@ -21,9 +24,11 @@ public class HorarioAtendimento implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Dia dia;
 
-	private LocalTime horaChegada;
+	@Temporal(TemporalType.TIME)
+	private Date horaChegada;
 
-	private LocalTime hotaSaida;
+	@Temporal(TemporalType.TIME)
+	private Date horaSaida;
 
 	public Long getId() {
 		return id;
@@ -41,20 +46,20 @@ public class HorarioAtendimento implements Serializable {
 		this.dia = dia;
 	}
 
-	public LocalTime getHoraChegada() {
+	public Date getHoraChegada() {
 		return horaChegada;
 	}
 
-	public void setHoraChegada(LocalTime horaChegada) {
+	public void setHoraChegada(Date horaChegada) {
 		this.horaChegada = horaChegada;
 	}
 
-	public LocalTime getHotaSaida() {
-		return hotaSaida;
+	public Date getHoraSaida() {
+		return horaSaida;
 	}
 
-	public void setHotaSaida(LocalTime hotaSaida) {
-		this.hotaSaida = hotaSaida;
+	public void setHoraSaida(Date horaSaida) {
+		this.horaSaida = horaSaida;
 	}
 
 }

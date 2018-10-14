@@ -2,7 +2,7 @@ package agenda.model.enuns;
 
 public enum Dia {
 
-	SEGUNDA("Segunda-feira"), TERCA("Terça-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA(
+	SEGUNDA("Segunda-feira"), TERCA("Terca-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA(
 			"Sexta-feira"), SABADO("Sabado"), DOMINGO("Domingo");
 
 	private String descricao;
@@ -14,5 +14,5 @@ public enum Dia {
 	public String getDescricao() {
 		return descricao;
 	}
-
+	
 }

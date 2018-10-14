@@ -8,7 +8,7 @@ public class Teste {
 
 	public static void main(String[] args) {
 		
-	
+		Persistence.createEntityManagerFactory("agendaPU").close();
 		
 	}
 

@@ -8,10 +8,15 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import agenda.model.enuns.Permissao;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="usuario.findByLogin", query="SELECT u FROM Usuario u WHERE u.login = :login")
+})
 public class Usuario implements Serializable {
 	
 	@Id
@@ -24,6 +29,12 @@ public class Usuario implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Permissao permissao;
+
+	
+	
+	public Usuario() {
+		setAtivo(true);;
+	}
 
 	public Long getId() {
 		return id;

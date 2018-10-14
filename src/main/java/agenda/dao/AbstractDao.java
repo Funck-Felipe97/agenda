@@ -134,5 +134,5 @@ public abstract class AbstractDao<T> {
 	protected Query createNamedQuery(String query) {
 		return manager.createNamedQuery(query, persistedClass);
 	}
-
+	
 }

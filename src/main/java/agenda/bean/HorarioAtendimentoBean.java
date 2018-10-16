@@ -30,6 +30,7 @@ public class HorarioAtendimentoBean {
 	
 	public void save() {
 		this.horarioAtendimentoService.save(this.horarioAtendimento);
+		this.horarioAtendimento = new HorarioAtendimento();
 	}
 
 	public void setHorarioAtendimento(HorarioAtendimento horarioAtendimento) {

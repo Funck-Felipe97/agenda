@@ -24,7 +24,7 @@ public class Servico implements Serializable {
 	@Column(length = 200, nullable = false)
 	private String descricao;
 
-	@ManyToMany
+	@ManyToMany(mappedBy = "servicos")
 	private List<Funcionario> funcionarios;
 
 	private Double preco;

@@ -1,6 +1,7 @@
 package agenda.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,7 +28,7 @@ public class Funcionario implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
-	@ManyToMany(mappedBy = "funcionarios")
+	@ManyToMany
 	private List<Servico> servicos;
 
 	@ManyToMany
@@ -50,6 +51,9 @@ public class Funcionario implements Serializable {
 	}
 
 	public Usuario getUsuario() {
+		if (this.usuario == null) {
+			this.usuario = new Usuario();
+		}
 		return usuario;
 	}
 
@@ -58,6 +62,9 @@ public class Funcionario implements Serializable {
 	}
 
 	public List<Servico> getServicos() {
+		if (servicos == null) {
+			servicos = new ArrayList<>();
+		}
 		return servicos;
 	}
 
@@ -66,6 +73,9 @@ public class Funcionario implements Serializable {
 	}
 
 	public List<HorarioAtendimento> getHorariosAtendimento() {
+		if (horariosAtendimento == null) {
+			horariosAtendimento = new ArrayList<>();
+		}
 		return horariosAtendimento;
 	}
 

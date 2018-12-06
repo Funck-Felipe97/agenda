@@ -1,7 +1,9 @@
 package agenda.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -60,6 +62,11 @@ public class HorarioAtendimento implements Serializable {
 
 	public void setHoraSaida(Date horaSaida) {
 		this.horaSaida = horaSaida;
+	}
+	
+	public String getDescricao() {
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+		return dia.getDescricao() + " das " + sdf.format(horaChegada) + " até " + sdf.format(horaSaida.getTime()); 
 	}
 
 }

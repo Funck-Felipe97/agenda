@@ -11,10 +11,59 @@
 	
 	<ui:define name="content">
 		<h1 class="aw-page-title">Clientes</h1>
-		
-		<h:form id="frm">
-			
+		<h:form id="formMessageId">
+			<p:messages showDetail="true" closable="true">
+			</p:messages>
 		</h:form>
+		<h:form id="frm">
+			<p:panelGrid columns="2" columnClasses="label,campo"
+				styleClass="panel" id="panelServicoId">
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{clienteBean.cliente.nome}" />
+
+				<p:outputLabel value="E-mail" />
+				<p:inputText value="#{clienteBean.cliente.email}" />
+
+				<p:outputLabel value="Telefone" />
+				<p:inputText value="#{clienteBean.cliente.telefone}" />
+
+				<p:outputLabel value="Cidade" />
+				<p:inputText value="#{clienteBean.cliente.cidade}" />
+
+				<p:outputLabel value="" />
+				<h:panelGroup>
+					<p:commandButton value="Salvar" action="#{clienteBean.save}"
+						update="@all" />
+					<p:commandButton value="Novo" />
+				</h:panelGroup>
+			</p:panelGrid>
+		</h:form>
+
+		<h:form id="formTabela">
+			<h1 class="aw-page-title">Clientes cadastrados</h1>
+			<p:dataTable var="cliente" value="#{clienteBean.clientes}"
+				style="font-size: 15px;" id="tabelaClientesId" paginator="true"
+				rows="10" paginatorPosition="bottom">
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{cliente.nome}" />
+				</p:column>
+
+				<p:column headerText="E-mail" style="width: 30%;">
+					<h:outputText value="#{cliente.email}" />
+				</p:column>
+
+				<p:column headerText="Telefone">
+					<h:outputText value="#{cliente.telefone}" />
+				</p:column>
+
+				<p:column headerText="Cidade" style="width: 30%;">
+					<h:outputText value="#{cliente.cidade}" />
+				</p:column>
+				
+			</p:dataTable>
+		</h:form>
+		
 	</ui:define>
 	
 </ui:composition>

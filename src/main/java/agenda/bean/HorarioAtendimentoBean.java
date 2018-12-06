@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.convert.Converter;
 
+import agenda.converter.HorarioAtendimentoConverter;
 import agenda.model.HorarioAtendimento;
 import agenda.model.enuns.Dia;
 import agenda.service.HorarioAtendimentoService;
@@ -43,5 +45,9 @@ public class HorarioAtendimentoBean {
 	
 	public List<Dia> getDias() {
 		return Arrays.asList(Dia.values());
+	}
+	
+	public Converter getConverter() {
+		return new HorarioAtendimentoConverter(getHorariosAtendimento());
 	}
 }

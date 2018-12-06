@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.convert.Converter;
 
+import agenda.converter.ServicoConverter;
 import agenda.exceptions.ObjetoJaCadastradoException;
 import agenda.model.Servico;
 import agenda.service.ServicoService;
@@ -46,5 +48,9 @@ public class ServicoBean extends AbstractBean{
 	public List<Servico> getServicos() {
 		return servicoService.getAll();
 	}
-
+	
+	public Converter getServicoConverter() {
+		return new ServicoConverter(getServicos());
+	}
+	
 }

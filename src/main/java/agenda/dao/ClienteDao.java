@@ -8,5 +8,4 @@ public class ClienteDao extends AbstractDao<Cliente>{
 		super(Cliente.class);
 	}
 
-
 }

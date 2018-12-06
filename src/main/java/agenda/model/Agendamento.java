@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Agendamento implements Serializable {
@@ -16,9 +17,8 @@ public class Agendamento implements Serializable {
 	@GeneratedValue
 	private Long id;
 
-	private LocalTime horario;
-	
-	private LocalTime horarioFim;
+	@ManyToOne
+	private HorarioAtendimento horarioAtendimento;
 
 	private LocalDate data;
 
@@ -39,14 +39,6 @@ public class Agendamento implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public LocalTime getHorario() {
-		return horario;
-	}
-
-	public void setHorario(LocalTime horario) {
-		this.horario = horario;
 	}
 
 	public LocalDate getData() {
@@ -89,12 +81,4 @@ public class Agendamento implements Serializable {
 		this.servico = servico;
 	}
 	
-	public LocalTime getHorarioFim() {
-		return horarioFim;
-	}
-	
-	public void setHorarioFim(LocalTime horarioFim) {
-		this.horarioFim = horarioFim;
-	}
-
 }

@@ -3,6 +3,7 @@ package agenda.service;
 import java.util.List;
 
 import agenda.dao.HorarioAtendimentoDao;
+import agenda.model.Funcionario;
 import agenda.model.HorarioAtendimento;
 
 public class HorarioAtendimentoService {

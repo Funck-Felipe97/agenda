@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
 import agenda.model.enuns.Permissao;
 
@@ -29,8 +30,10 @@ public class Usuario implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Permissao permissao;
-
 	
+	@OneToOne(mappedBy = "usuario")
+	private Funcionario funcionario;
+
 	
 	public Usuario() {
 		setAtivo(true);;
@@ -74,5 +77,13 @@ public class Usuario implements Serializable {
 
 	public void setPermissao(Permissao permissao) {
 		this.permissao = permissao;
+	}
+	
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 }

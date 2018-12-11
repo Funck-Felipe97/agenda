@@ -8,8 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+@NamedQueries({
+	@NamedQuery(name = "agendamento.findByFuncionarioAndData", query = "SELECT a FROM Agendamento a WHERE a.funcionario = :funcionario AND a.data = :dataBusca")
+})
 @Entity
 public class Agendamento implements Serializable {
 
@@ -79,6 +84,14 @@ public class Agendamento implements Serializable {
 
 	public void setServico(Servico servico) {
 		this.servico = servico;
+	}
+	
+	public HorarioAtendimento getHorarioAtendimento() {
+		return horarioAtendimento;
+	}
+	
+	public void setHorarioAtendimento(HorarioAtendimento horarioAtendimento) {
+		this.horarioAtendimento = horarioAtendimento;
 	}
 	
 }

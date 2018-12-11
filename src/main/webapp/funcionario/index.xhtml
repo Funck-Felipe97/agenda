@@ -10,11 +10,68 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1 class="aw-page-title">Funcionario</h1>
+		<h1 class="aw-page-title">Bem vindo <p:outputLabel value="#{funcionarioLogadoBean.funcionario.nome}" /></h1>
 
 		<h:form id="frm">
+			<p:panelGrid columns="2" columnClasses="label,campo"
+				styleClass="panel" id="panelFuncionarioId">
 
+				<p:outputLabel value="Data" />
+				<p:calendar id="dataBusca"
+					value="#{agendaFuncionarioBean.dataBusca}" converter="localDateConverter"
+					pattern="dd/MM/yyyy" >
+				</p:calendar>
+
+				<p:outputLabel value="" />
+				<p:commandButton value="Buscar" id="btnBuscar" update=":formTabela"
+					action="#{agendaFuncionarioBean.buscarAgenda(funcionarioLogadoBean.funcionario)}"
+					style="margin-right:20px;" />
+
+			</p:panelGrid>
 		</h:form>
+
+		<h:form id="formTabela">
+			<h:outputText value="Agenda do dia" styleClass="aw-page-title"
+				rendered="#{not empty agendaFuncionarioBean.agendamentos}" />
+			
+			<p:dataTable var="agendamento"
+				value="#{agendaFuncionarioBean.agendamentos}"
+				style="font-size: 15px;" id="tabelaAgendamentosId" paginator="true"
+				rows="10" paginatorPosition="bottom"
+				rendered="#{not empty agendaFuncionarioBean.agendamentos}">
+
+				<p:column headerText="Dia" style="width: 10%; text-align:center;">
+					<h:outputText value="#{agendamento.horarioAtendimento.dia.descricao}" />
+				</p:column>
+
+				<p:column headerText="Horario inicial"
+					style="width: 10%; text-align:center;">
+					<h:outputText value="#{agendamento.horarioAtendimento.horaChegada}">
+						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Horario final"
+					style="width: 10%; text-align:center;">
+					<h:outputText value="#{agendamento.horarioAtendimento.horaSaida}">
+						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Cliente"
+					style="width: 10%; text-align:center;">
+					<h:outputText value="#{agendamento.cliente.nome}" />
+				</p:column>
+				
+				<p:column headerText="Serviço"
+					style="width: 10%; text-align:center;">
+					<h:outputText value="#{agendamento.servico.descricao}" />
+				</p:column>
+
+			</p:dataTable>
+			
+		</h:form>
+
 	</ui:define>
 
 </ui:composition>

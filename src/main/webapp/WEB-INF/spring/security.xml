@@ -30,7 +30,7 @@
 			value="jdbc:mysql://localhost:3306/agendadb" />
 		<bean:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<bean:property name="username" value="root" />
-		<bean:property name="password" value="felipe" />
+		<bean:property name="password" value="093928" />
 	</bean:bean>
 
 </bean:beans>

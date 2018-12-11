@@ -85,6 +85,8 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>3.2.6.RELEASE</version>
 		</dependency>
+		
+		
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -97,7 +99,20 @@
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.4.0</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>

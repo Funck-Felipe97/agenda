@@ -20,6 +20,7 @@ public class HorarioAtendimentoConverter implements Converter{
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
+		System.out.println(value);
 		return this.horariosAtendimento.stream().filter(item -> item.getDescricao().equals(value)).findFirst().get();
 	}
 

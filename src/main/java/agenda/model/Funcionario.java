@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import agenda.model.enuns.Permissao;
@@ -33,6 +34,9 @@ public class Funcionario implements Serializable {
 
 	@ManyToMany
 	private List<HorarioAtendimento> horariosAtendimento;
+	
+	@OneToMany(mappedBy = "funcionario")
+	private List<Agendamento> agendamentos;
 
 	public Long getId() {
 		return id;
@@ -81,6 +85,14 @@ public class Funcionario implements Serializable {
 
 	public void setHorariosAtendimento(List<HorarioAtendimento> horariosAtendimento) {
 		this.horariosAtendimento = horariosAtendimento;
+	}
+	
+	public List<Agendamento> getAgendamentos() {
+		return agendamentos;
+	}
+	
+	public void setAgendamentos(List<Agendamento> agendamentos) {
+		this.agendamentos = agendamentos;
 	}
 
 }

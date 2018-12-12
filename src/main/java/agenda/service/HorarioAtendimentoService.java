@@ -1,7 +1,9 @@
 package agenda.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import agenda.bean.HorarioAtendimentoBean;
 import agenda.dao.HorarioAtendimentoDao;
 import agenda.model.Funcionario;
 import agenda.model.HorarioAtendimento;

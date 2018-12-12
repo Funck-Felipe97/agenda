@@ -14,6 +14,9 @@ public class ClienteService {
 	}
 	
 	public Cliente save(Cliente cliente) {
+		if (cliente.getId() != null) {
+			return clienteDao.update(cliente);
+		}
 		return clienteDao.save(cliente);
 	}
 	

@@ -7,7 +7,7 @@
 			<li>
 				<h:link outcome="/admin/index"><i class="fa  fa-fw  fa-home"></i>Inicio</h:link>
 			</li>
-			<li class="is-selected">
+			<li>
 				<h:link outcome="/admin/clientes"><i class="fa  fa-fw  fa-user"></i>Clientes</h:link>
 			</li>
 			<li>
@@ -23,7 +23,7 @@
 				<h:link outcome="/admin/relatorios"><i class="fa  fa-fw  fa-user"></i>Relatórios</h:link>
 			</li>
 			<li>
-				<h:link><i class="fa  fa-fw  fa-user"></i>Sair</h:link>
+				<h:link onclick="document.location='#{request.contextPath}/j_spring_security_logout'"><i class="fa  fa-fw  fa-user"></i>Sair</h:link>
 			</li>
 		</ul>
 	</nav>

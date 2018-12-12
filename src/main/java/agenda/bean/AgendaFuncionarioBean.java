@@ -4,18 +4,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import agenda.model.Agendamento;
 import agenda.model.Funcionario;
+import agenda.model.enuns.StatusAgendamento;
 import agenda.service.AgendamentoService;
 
 @ManagedBean
-@SessionScoped
-public class AgendaFuncionarioBean {
+@ViewScoped
+public class AgendaFuncionarioBean extends AbstractBean{
 	
 	private LocalDate dataBusca;
 	private AgendamentoService agendamentoService;
@@ -24,6 +28,15 @@ public class AgendaFuncionarioBean {
 	public AgendaFuncionarioBean() {
 		this.agendamentoService = new AgendamentoService();
 		this.dataBusca = LocalDate.now();
+	}
+	
+	public void update(Agendamento agendamento) {
+		try {
+			this.agendamentoService.update(agendamento);
+			super.info("Agendamento salvo com sucesso");
+		} catch (Exception e) {
+			super.error("Falha ao salvar");
+		}
 	}
 	
 	public LocalDate getDataBusca() {
@@ -44,6 +57,10 @@ public class AgendaFuncionarioBean {
 	
 	public void buscarAgenda(Funcionario funcionario){
 		this.agendamentos = agendamentoService.getAgendaFuncionario(funcionario, dataBusca);
+	}
+	
+	public List<StatusAgendamento> getStatus() {
+		return Arrays.asList(StatusAgendamento.values());
 	}
 	
 }

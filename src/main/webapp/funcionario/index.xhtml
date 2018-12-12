@@ -10,7 +10,15 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1 class="aw-page-title">Bem vindo <p:outputLabel value="#{funcionarioLogadoBean.funcionario.nome}" /></h1>
+		<h1 class="aw-page-title">
+			Bem vindo
+			<p:outputLabel value="#{funcionarioLogadoBean.funcionario.nome}" />
+		</h1>
+		
+		<h:form id="formMessageId">
+			<p:messages showDetail="true" closable="true">
+			</p:messages>
+		</h:form>
 
 		<h:form id="frm">
 			<p:panelGrid columns="2" columnClasses="label,campo"
@@ -18,8 +26,8 @@
 
 				<p:outputLabel value="Data" />
 				<p:calendar id="dataBusca"
-					value="#{agendaFuncionarioBean.dataBusca}" converter="localDateConverter"
-					pattern="dd/MM/yyyy" >
+					value="#{agendaFuncionarioBean.dataBusca}"
+					converter="localDateConverter" pattern="dd/MM/yyyy">
 				</p:calendar>
 
 				<p:outputLabel value="" />
@@ -33,7 +41,7 @@
 		<h:form id="formTabela">
 			<h:outputText value="Agenda do dia" styleClass="aw-page-title"
 				rendered="#{not empty agendaFuncionarioBean.agendamentos}" />
-			
+
 			<p:dataTable var="agendamento"
 				value="#{agendaFuncionarioBean.agendamentos}"
 				style="font-size: 15px;" id="tabelaAgendamentosId" paginator="true"
@@ -41,7 +49,8 @@
 				rendered="#{not empty agendaFuncionarioBean.agendamentos}">
 
 				<p:column headerText="Dia" style="width: 10%; text-align:center;">
-					<h:outputText value="#{agendamento.horarioAtendimento.dia.descricao}" />
+					<h:outputText
+						value="#{agendamento.horarioAtendimento.dia.descricao}" />
 				</p:column>
 
 				<p:column headerText="Horario inicial"
@@ -62,14 +71,29 @@
 					style="width: 10%; text-align:center;">
 					<h:outputText value="#{agendamento.cliente.nome}" />
 				</p:column>
-				
+
 				<p:column headerText="Serviço"
 					style="width: 10%; text-align:center;">
 					<h:outputText value="#{agendamento.servico.descricao}" />
 				</p:column>
 
+				<p:column headerText="Status" style="width: 10%; text-align:center;">
+
+					<p:selectOneMenu
+						value="#{agendamento.statusAgendamento}"
+						converter="statusAgendamentoConverter">
+						<f:selectItems value="#{agendaFuncionarioBean.status}" var="status"
+							itemValue="#{status}" itemLabel="#{status.descricao}" />
+					</p:selectOneMenu>
+
+				</p:column>
+				
+				<p:column headerText="Opções" style="width: 10%; text-align:center;">
+					<p:commandButton value="Atualizar" update="@all" action="#{agendaFuncionarioBean.update(agendamento)}" />
+				</p:column>
+
 			</p:dataTable>
-			
+
 		</h:form>
 
 	</ui:define>

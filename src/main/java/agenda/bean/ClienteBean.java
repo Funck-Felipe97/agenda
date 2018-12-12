@@ -19,6 +19,16 @@ public class ClienteBean extends AbstractBean{
 		this.clienteService = new ClienteService();
 	}
 	
+	public void save() {
+		try {
+			this.clienteService.save(cliente);
+			super.info("Cliente salvo com sucesso");
+		} catch (Exception e) {
+			super.error("Falha ao salvar");
+		}
+		this.cliente = new Cliente();
+	}
+	
 	public Cliente getCliente() {
 		if (cliente == null) {
 			cliente = new Cliente();

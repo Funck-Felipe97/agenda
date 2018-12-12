@@ -5,12 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
+import agenda.model.enuns.StatusAgendamento;
 
 @NamedQueries({
 	@NamedQuery(name = "agendamento.findByFuncionarioAndData", query = "SELECT a FROM Agendamento a WHERE a.funcionario = :funcionario AND a.data = :dataBusca")
@@ -28,6 +32,9 @@ public class Agendamento implements Serializable {
 	private LocalDate data;
 
 	private boolean confirmado;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusAgendamento statusAgendamento;
 
 	@ManyToOne
 	private Cliente cliente;
@@ -47,6 +54,9 @@ public class Agendamento implements Serializable {
 	}
 
 	public LocalDate getData() {
+		if (data == null) {
+			this.data = LocalDate.now();
+		}
 		return data;
 	}
 
@@ -92,6 +102,39 @@ public class Agendamento implements Serializable {
 	
 	public void setHorarioAtendimento(HorarioAtendimento horarioAtendimento) {
 		this.horarioAtendimento = horarioAtendimento;
+	}
+	
+	public StatusAgendamento getStatusAgendamento() {
+		return statusAgendamento;
+	}
+	
+	public void setStatusAgendamento(StatusAgendamento statusAgendamento) {
+		this.statusAgendamento = statusAgendamento;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Agendamento other = (Agendamento) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 }

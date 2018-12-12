@@ -3,7 +3,7 @@ package agenda.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.convert.Converter;
 
 import agenda.converter.ServicoConverter;
@@ -12,7 +12,7 @@ import agenda.model.Servico;
 import agenda.service.ServicoService;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ServicoBean extends AbstractBean{
 
 	private Servico servico;

@@ -8,6 +8,7 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/admin/**" access="ROLE_ADMINISTRADOR" />
+		<intercept-url pattern="/funcionario/**" access="ROLE_FUNCIONARIO" />
 		<form-login login-page="/login.xhtml"
 			always-use-default-target="false" />
 
@@ -30,7 +31,7 @@
 			value="jdbc:mysql://localhost:3306/agendadb" />
 		<bean:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<bean:property name="username" value="root" />
-		<bean:property name="password" value="093928" />
+		<bean:property name="password" value="felipe" />
 	</bean:bean>
 
 </bean:beans>

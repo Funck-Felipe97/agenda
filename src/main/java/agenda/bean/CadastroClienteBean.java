@@ -1,20 +1,23 @@
 package agenda.bean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.convert.Converter;
+
+import agenda.converter.ClienteConverter;
 import agenda.exceptions.ObjetoJaCadastradoException;
 import agenda.model.Cliente;
-import agenda.model.Servico;
-import agenda.model.enuns.Permissao;
 import agenda.service.CadastroService;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CadastroClienteBean extends AbstractBean{
 	
 	private Cliente cliente;
 	private CadastroService cadastroService;
+	private List<Cliente> clientes;
 	
 	public CadastroClienteBean() {
 		this.cadastroService = new CadastroService();
@@ -42,5 +45,15 @@ public class CadastroClienteBean extends AbstractBean{
 		this.cliente = cliente;
 	}
 	
+	public List<Cliente> getClientes() {
+		if (clientes == null) {
+			clientes = this.cadastroService.getAll();
+		}
+		return clientes;
+	}
+	
+	public Converter getConverter() {
+		return new ClienteConverter(clientes);
+	}
 	
 }

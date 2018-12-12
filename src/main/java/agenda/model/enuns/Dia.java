@@ -1,9 +1,11 @@
 package agenda.model.enuns;
 
+import java.time.LocalDate;
+
 public enum Dia {
 
-	SEGUNDA("Segunda-feira"), TERCA("Terca-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA(
-			"Sexta-feira"), SABADO("Sabado"), DOMINGO("Domingo");
+	DOMINGO("Domingo"), SEGUNDA("Segunda-feira"), TERCA("Terca-feira"), QUARTA("Quarta-feira"), QUINTA("Quinta-feira"), SEXTA(
+			"Sexta-feira"), SABADO("Sabado");
 
 	private final String descricao;
 
@@ -34,6 +36,11 @@ public enum Dia {
 			default:
 				return null;
 		}
+	}
+
+	public static Dia getEnum(LocalDate data) {
+		int dia = data.getDayOfWeek().getValue();
+		return values()[dia];
 	}
 	
 }

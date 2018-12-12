@@ -18,5 +18,13 @@ public class AgendamentoService {
 	public List<Agendamento> getAgendaFuncionario(Funcionario funcionario, LocalDate dataBusca) {
 		return this.agendamentoDao.getAllByFuncionadoAndData(funcionario, dataBusca);
 	}
+
+	public void update(Agendamento agendamento) {
+		this.agendamentoDao.update(agendamento);
+	}
+
+	public void save(Agendamento agendamento) {
+		this.agendamentoDao.save(agendamento);
+	}
 	
 }

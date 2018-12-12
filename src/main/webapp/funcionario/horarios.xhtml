@@ -10,27 +10,32 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1 class="aw-page-title">Horarios de serviços</h1>
 
-		<h:form id="frm">
-			<p:panelGrid columns="2" columnClasses="label,campo"
-				styleClass="panel" id="panelHorarioId">
-				
-				<p:selectManyMenu id="horariosId"
-					value="#{funcionarioLogadoBean.funcionario.horariosAtendimento}"
-					 var="h" filter="true" style="width:380px;"
-					filterMatchMode="contains" showCheckbox="true"
-					converter="#{horarioAtendimentoBean.converter}">
-					<f:selectItems value="#{horarioAtendimentoBean.horariosAtendimento}" var="horario"
-						itemLabel="#{horario.id}" itemValue="#{horario}" />
+		<h:form id="formTabela">
+			<h1 class="aw-page-title">Seus horários de atendimento</h1>
+			<p:dataTable var="horario"
+				value="#{funcionarioLogadoBean.funcionario.horariosAtendimento}"
+				style="font-size: 15px;" id="tabelaHorariosId" paginator="true"
+				rows="10" paginatorPosition="bottom">
 
-					<p:column>
-						<h:outputText value="#{h.descricao}" />
-					</p:column>
+				<p:column headerText="Dia">
+					<h:outputText value="#{horario.dia.descricao}"/>
+				</p:column>
 
-				</p:selectManyMenu>
-				
-			</p:panelGrid>
+				<p:column headerText="Horario inicial" style="width: 30%; text-align:center;">
+					<h:outputText value="#{horario.horaChegada}">
+						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Horario final"
+					style="width: 30%; text-align:center;">
+					<h:outputText value="#{horario.horaSaida}">
+						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+					</h:outputText>
+				</p:column>
+
+			</p:dataTable>
 		</h:form>
 
 	</ui:define>

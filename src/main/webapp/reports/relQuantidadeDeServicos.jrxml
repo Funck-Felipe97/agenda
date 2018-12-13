@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relHorariosServicosFuncionarios" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2dc632a1-b9c3-4fee-801b-c5212743ab90">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relHorariosServicosFuncionarios" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2dc632a1-b9c3-4fee-801b-c5212743ab90">
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
@@ -15,8 +15,8 @@
 	</style>
 	<queryString>
 		<![CDATA[select fun.nome, count(a.id) from usuario usu
-inner join funcionario fun 						on fun.usuario_id = usu.id
-inner join agendamento a						on a.funcionario_id = fun.id
+inner join funcionario fun on fun.usuario_id = usu.id
+inner join agendamento a on a.funcionario_id = fun.id
 group by fun.id;]]>
 	</queryString>
 	<field name="nome" class="java.lang.String">
@@ -111,4 +111,15 @@ group by fun.id;]]>
 	<summary>
 		<band splitType="Stretch"/>
 	</summary>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement uuid="dc6b356e-49b5-4d79-b300-559b8c8ede0c" x="0" y="0" width="555" height="50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[Não há dados]]></text>
+			</staticText>
+		</band>
+	</noData>
 </jasperReport>

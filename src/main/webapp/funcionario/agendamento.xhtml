@@ -8,58 +8,68 @@
 	<ui:define name="menu">
 		<ui:include src="/WEB-INF/templates/menuFuncionario.xhtml" />
 	</ui:define>
-	
+
 	<ui:define name="content">
-		<h1 class="aw-page-title">Agendamento</h1>
+		<h:panelGroup id="conteudoId">
+			<h1 class="aw-page-title">Agendamento</h1>
 
-		<h:form id="formMessageId">
-			<p:messages showDetail="true" closable="true">
-			</p:messages>
-		</h:form>
-		
-		<h:form id="frm">
-			<p:panelGrid id="panelId" columns="2" columnClasses="label,campo"
-				styleClass="panel">
+			<h:form id="formMessageId">
+				<p:messages showDetail="true" closable="true">
+				</p:messages>
+			</h:form>
 
-				<p:outputLabel value="Cliente" />
-				<p:selectOneMenu
-					value="#{agendamentoBean.agendamento.cliente}"
-					converter="#{cadastroClienteBean.converter}">
-					<f:selectItems value="#{cadastroClienteBean.clientes}" var="cliente"
-						itemValue="#{cliente}" itemLabel="#{cliente.nome}" />
-				</p:selectOneMenu>
-				
-				<p:outputLabel value="Data" />
-				<p:calendar id="data"
-					value="#{agendamentoBean.agendamento.data}"
-					converter="localDateConverter" pattern="dd/MM/yyyy">
-					<p:ajax event="dateSelect" update="panelId"/>
-				</p:calendar>
+			<h:form id="frm">
+				<p:panelGrid id="panelId" columns="2" columnClasses="label,campo"
+					styleClass="panel">
 
-				<p:outputLabel value="Serviço" />
-				<p:selectOneMenu
-					value="#{agendamentoBean.agendamento.servico}"
-					converter="#{servicoBean.servicoConverter}">
-					<f:selectItems value="#{funcionarioLogadoBean.funcionario.servicos}" var="servico"
-						itemValue="#{servico}" itemLabel="#{servico.descricao}" />
-				</p:selectOneMenu>
-				
-				<p:outputLabel value="Horário de atendimento" />
-				<p:selectOneMenu
-					value="#{agendamentoBean.agendamento.horarioAtendimento}"
-					converter="#{horarioAtendimentoBean.converter}">
-					<f:selectItems value="#{agendamentoBean.horariosDisponiveis}" var="horario"
-						itemValue="#{horario}" itemLabel="#{horario.descricao}" />
-				</p:selectOneMenu>
-				
-				<p:outputLabel value="" />
-				<h:panelGroup>
-					<p:commandButton value="Salvar"
-						action="#{agendamentoBean.save}" update="@all"/>
-				</h:panelGroup>
-			</p:panelGrid>
-		</h:form>
+					<p:outputLabel value="Cliente" />
+					<p:selectOneMenu value="#{agendamentoBean.agendamento.cliente}"
+						converter="#{cadastroClienteBean.converter}" required="true"
+						requiredMessage="Um cliente deve ser selecionado para realizar o agendamento"
+						style="width:390px;">
+						<f:selectItems value="#{cadastroClienteBean.clientes}"
+							var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}" />
+					</p:selectOneMenu>
 
+					<p:outputLabel value="Data" />
+					<p:calendar id="data" value="#{agendamentoBean.agendamento.data}"
+						converter="localDateConverter" pattern="dd/MM/yyyy"
+						mindate="today" required="true"
+						requiredMessage="Uma data deve ser selecionada"
+						style="width:350px;">
+						<p:ajax event="dateSelect" update="panelId" />
+					</p:calendar>
+
+					<p:outputLabel value="Serviço" />
+					<p:selectOneMenu value="#{agendamentoBean.agendamento.servico}"
+						converter="#{servicoBean.servicoConverter}" required="true"
+						requiredMessage="Um serviço deve ser selecionado" style="width:390px;">
+						<f:selectItems
+							value="#{funcionarioLogadoBean.funcionario.servicos}"
+							var="servico" itemValue="#{servico}"
+							itemLabel="#{servico.descricao}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Horário de atendimento" />
+					<p:selectOneMenu
+						value="#{agendamentoBean.agendamento.horarioAtendimento}"
+						converter="#{horarioAtendimentoBean.converter}" required="true"
+						requiredMessage="Um horário de atendimento deve ser selecionado"
+						style="width:390px;">
+						<f:selectItems value="#{agendamentoBean.horariosDisponiveis}"
+							var="horario" itemValue="#{horario}"
+							itemLabel="#{horario.descricao}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="" />
+					<h:panelGroup>
+						<p:commandButton value="Salvar" action="#{agendamentoBean.save}"
+							update=":conteudoId" />
+					</h:panelGroup>
+				</p:panelGrid>
+			</h:form>
+
+		</h:panelGroup>
 	</ui:define>
 
 </ui:composition>

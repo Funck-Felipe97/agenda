@@ -1,31 +1,26 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
-	
+
 	<nav class="aw-menu">
 		<ul>
-			<li>
-				<h:link outcome="/admin/index"><i class="fa  fa-fw  fa-home"></i>Inicio</h:link>
-			</li>
-			<li>
-				<h:link outcome="/admin/clientes"><i class="fa  fa-fw  fa-user"></i>Clientes</h:link>
-			</li>
-			<li>
-				<h:link outcome="/admin/servicos"><i class="fa  fa-fw  fa-user"></i>Serviços</h:link>
-			</li>
-			<li>
-				<h:link outcome="/admin/funcionarios"><i class="fa  fa-fw  fa-user"></i>Funcionarios</h:link>
-			</li>
-			<li>
-				<h:link outcome="/admin/horarios"><i class="fa  fa-fw  fa-user"></i>Horarios</h:link>
-			</li>
-			<li>
-				<h:link outcome="/admin/relatorios"><i class="fa  fa-fw  fa-user"></i>Relatórios</h:link>
-			</li>
-			<li>
-				<h:link onclick="document.location='#{request.contextPath}/j_spring_security_logout'"><i class="fa  fa-fw  fa-user"></i>Sair</h:link>
-			</li>
+			<li><h:link outcome="/admin/index">
+					<i class="fa  fa-fw  fa-home"></i>Inicio</h:link></li>
+			<li><h:link outcome="/admin/clientes">
+					<i class="fa  fa-fw  fa-user"></i>Clientes</h:link></li>
+			<li><h:link outcome="/admin/servicos">
+					<i class="fa  fa-fw  fa-user"></i>Serviços</h:link></li>
+			<li><h:link outcome="/admin/funcionarios">
+					<i class="fa  fa-fw  fa-user"></i>Funcionarios</h:link></li>
+			<li><h:link outcome="/admin/horarios">
+					<i class="fa  fa-fw  fa-user"></i>Horarios</h:link></li>
+			<li><h:link outcome="/admin/relatorios">
+					<i class="fa  fa-fw  fa-user"></i>Relatórios</h:link></li>
+			<h:form>
+				<li><h:commandLink action="#{funcionarioBean.logout}">
+						<i class="fa  fa-fw  fa-user"></i>Sair</h:commandLink></li>
+			</h:form>
 		</ul>
 	</nav>
-	
+
 </ui:composition>

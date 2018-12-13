@@ -12,13 +12,13 @@
 
 	<title>login</title>
 
-	<h:outputStylesheet library="algaworks" name="styles/custom.css" />
-	<h:outputStylesheet library="algaworks" name="styles/layout.css" />
-	<h:outputStylesheet library="algaworks" name="styles/components.css" />
+	<h:outputStylesheet library="agenda" name="styles/custom.css" />
+	<h:outputStylesheet library="agenda" name="styles/layout.css" />
+	<h:outputStylesheet library="agenda" name="styles/components.css" />
 
 	<h:outputScript target="body" library="primefaces"
 		name="jquery/jquery.js" />
-	<h:outputScript target="body" library="algaworks"
+	<h:outputScript target="body" library="agenda"
 		name="javascripts/app.js" />
 </h:head>
 
@@ -38,7 +38,7 @@
 
 		<form id="login" method="post"
 			action="#{request.contextPath}/j_spring_security_check">
-			<table>
+			<table style="position:relative; top: 250px; left: 350px;">
 				<tr>
 					<td>Login</td>
 					<td><input type='text' name='j_username' autofocus="true" /></td>

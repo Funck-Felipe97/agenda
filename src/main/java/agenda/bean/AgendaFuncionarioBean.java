@@ -51,12 +51,14 @@ public class AgendaFuncionarioBean extends AbstractBean{
 		if (agendamentos == null) {
 			agendamentos = new ArrayList<>();
 		}
-		System.out.println(agendamentos.size());
 		return agendamentos;
 	}
 	
 	public void buscarAgenda(Funcionario funcionario){
 		this.agendamentos = agendamentoService.getAgendaFuncionario(funcionario, dataBusca);
+		if (getAgendamentos().isEmpty()) {
+			super.info("Nenhum agendamento encontrado");
+		}
 	}
 	
 	public List<StatusAgendamento> getStatus() {

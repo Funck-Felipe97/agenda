@@ -10,74 +10,81 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h1 class="aw-page-title">Horarios de serviços</h1>
+		<h:panelGroup id="conteudoId">
+			<h1 class="aw-page-title">Horarios de serviços</h1>
+			<h:form id="formMessageId">
+				<p:messages showDetail="true" closable="true">
+				</p:messages>
+			</h:form>
+			<h:form id="frm">
+				<p:panelGrid columns="2" columnClasses="label,campo"
+					styleClass="panel" id="panelHorarioId">
 
-		<h:form id="frm">
-			<p:panelGrid columns="2" columnClasses="label,campo"
-				styleClass="panel" id="panelHorarioId">
+					<p:outputLabel value="Dia" />
+					<p:selectOneMenu
+						value="#{horarioAtendimentoBean.horarioAtendimento.dia}"
+						converter="diaConverter" required="true" requiredMessage="O campo dia é obrigatório">
+						<f:selectItems value="#{horarioAtendimentoBean.dias}" var="dia"
+							itemValue="#{dia}" itemLabel="#{dia.descricao}" />
+					</p:selectOneMenu>
 
-				<p:outputLabel value="Dia" />
-				<p:selectOneMenu
-					value="#{horarioAtendimentoBean.horarioAtendimento.dia}"
-					converter="diaConverter">
-					<f:selectItems value="#{horarioAtendimentoBean.dias}" var="dia"
-						itemValue="#{dia}" itemLabel="#{dia.descricao}" />
-				</p:selectOneMenu>
+					<h:outputLabel value="Horario inicial" for="horarioInicioId" />
+					<p:calendar id="horarioInicioId"
+						value="#{horarioAtendimentoBean.horarioAtendimento.horaChegada}"
+						pattern="HH:mm" timeOnly="true" timeZone="America/Sao_paulo" 
+						required="true" requiredMessage="O campo horário inicial é obrigatório"/>
 
-				<h:outputLabel value="Horario inicial" for="horarioInicioId" />
-				<p:calendar id="horarioInicioId"
-					value="#{horarioAtendimentoBean.horarioAtendimento.horaChegada}"
-					pattern="HH:mm" timeOnly="true" timeZone="America/Sao_paulo" />
+					<h:outputLabel value="Horario final" for="horaFinalId" />
+					<p:calendar id="horaFinalId"
+						value="#{horarioAtendimentoBean.horarioAtendimento.horaSaida}"
+						pattern="HH:mm" timeOnly="true" timeZone="America/Sao_paulo" 
+						required="true" requiredMessage="O campo horário final é obrigatório"/>
 
-				<h:outputLabel value="Horario final" for="horaFinalId" />
-				<p:calendar id="horaFinalId"
-					value="#{horarioAtendimentoBean.horarioAtendimento.horaSaida}"
-					pattern="HH:mm" timeOnly="true" timeZone="America/Sao_paulo" />
+					<p:outputLabel value="" />
+					<h:panelGroup>
+						<p:commandButton value="Salvar"
+							action="#{horarioAtendimentoBean.save}" update=":conteudoId" />
+					</h:panelGroup>
+				</p:panelGrid>
+			</h:form>
 
-				<p:outputLabel value="" />
-				<h:panelGroup>
-					<p:commandButton value="Salvar"
-						action="#{horarioAtendimentoBean.save}"
-						update=":formTabela , panelHorarioId" />
-					<p:commandButton value="Novo" />
-				</h:panelGroup>
-			</p:panelGrid>
-		</h:form>
+			<h:form id="formTabela">
+				<h1 class="aw-page-title">Horarios cadastrados</h1>
+				<p:dataTable var="horario"
+					value="#{horarioAtendimentoBean.horariosAtendimento}"
+					style="font-size: 15px;" id="tabelaHorariosId" paginator="true"
+					rows="10" paginatorPosition="bottom">
 
-		<h:form id="formTabela">
-			<h1 class="aw-page-title">Horarios cadastrados</h1>
-			<p:dataTable var="horario"
-				value="#{horarioAtendimentoBean.horariosAtendimento}"
-				style="font-size: 15px;" id="tabelaHorariosId" paginator="true"
-				rows="10" paginatorPosition="bottom">
+					<p:column headerText="Dia">
+						<h:outputText value="#{horario.dia.descricao}" />
+					</p:column>
 
-				<p:column headerText="Dia">
-					<h:outputText value="#{horario.dia.descricao}"/>
-				</p:column>
+					<p:column headerText="Horario inicial"
+						style="width: 30%; text-align:center;">
+						<h:outputText value="#{horario.horaChegada}">
+							<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+						</h:outputText>
+					</p:column>
 
-				<p:column headerText="Horario inicial" style="width: 30%; text-align:center;">
-					<h:outputText value="#{horario.horaChegada}">
-						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
-					</h:outputText>
-				</p:column>
+					<p:column headerText="Horario final"
+						style="width: 30%; text-align:center;">
+						<h:outputText value="#{horario.horaSaida}">
+							<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
+						</h:outputText>
+					</p:column>
 
-				<p:column headerText="Horario final"
-					style="width: 30%; text-align:center;">
-					<h:outputText value="#{horario.horaSaida}">
-						<f:convertDateTime locale="BR" pattern="HH:mm:SS" />
-					</h:outputText>
-				</p:column>
+					<p:column headerText="Opções"
+						style="width: 10%; text-align:center;">
+						<p:commandButton value="Editar" update=":conteudoId">
+							<f:setPropertyActionListener
+								target="#{horarioAtendimentoBean.horarioAtendimento}"
+								value="#{horario}" />
+						</p:commandButton>
+					</p:column>
 
-				<p:column headerText="Opções" style="width: 10%; text-align:center;">
-					<p:commandButton value="Editar" update="@all">
-						<f:setPropertyActionListener
-							target="#{horarioAtendimentoBean.horarioAtendimento}"
-							value="#{horario}" />
-					</p:commandButton>
-				</p:column>
-
-			</p:dataTable>
-		</h:form>
+				</p:dataTable>
+			</h:form>
+		</h:panelGroup>
 	</ui:define>
 
 </ui:composition>

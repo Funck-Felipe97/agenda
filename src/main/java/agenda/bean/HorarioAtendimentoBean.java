@@ -14,7 +14,7 @@ import agenda.service.HorarioAtendimentoService;
 
 @ManagedBean
 @SessionScoped
-public class HorarioAtendimentoBean {
+public class HorarioAtendimentoBean extends AbstractBean{
 
 	private HorarioAtendimento horarioAtendimento;
 	private HorarioAtendimentoService horarioAtendimentoService;
@@ -31,7 +31,21 @@ public class HorarioAtendimentoBean {
 	}
 	
 	public void save() {
-		this.horarioAtendimentoService.save(this.horarioAtendimento);
+		try {
+			if (horarioAtendimento.getHoraChegada().after(horarioAtendimento.getHoraSaida())) {
+				super.warn("O horário inicial não pode ser maior que o horário final");
+				return;
+			}
+			this.horarioAtendimentoService.save(this.horarioAtendimento);
+			this.horarioAtendimento = new HorarioAtendimento();
+			super.info("Horário de atendimento salvo com sucesso");
+		} catch (Exception e) {
+			super.error("Falha ao salvar horário de atendimento");
+		}
+		
+	}
+	
+	public void novo() {
 		this.horarioAtendimento = new HorarioAtendimento();
 	}
 
